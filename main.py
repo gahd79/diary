@@ -20,7 +20,7 @@ class DiaryApp:
         """
         self.root = root
         self.root.title("日记管理程序")
-        self.root.geometry("300x200")
+        self.root.geometry("600x400")
         self.diary = Diary()
         
         self.create_widgets()
@@ -75,7 +75,7 @@ class DiaryApp:
             
             messagebox.showinfo("成功", f"已创建日记模板文件: {path}")
         except Exception as e:
-            messagebox.showerror("错误", f"创建模板时出错: {str(e)}")
+            messagebox.showerror("杂鱼~~", f"今天的日记模板已经创建过了")
     
     def compile_diary(self):
         """

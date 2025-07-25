@@ -49,9 +49,14 @@ class Diary:
         # 切换到当前目录
         os.chdir(self.current_dir)
         # 打开文件并追加写入模板内容
-        f = open(path,'a',encoding='utf-8')
-        f.write(f'[本文件由python于{self.time}创建](./main.py)')
+        f = open(path,'a+',encoding='utf-8')
+        f.seek(0)  
+        if(f.read()==''):
+            f.write(f'### {self.day}')
+        else:
+            pass
         f.close()
+
 
     def readfile(self):
         """
@@ -88,7 +93,9 @@ class Diary:
         # 处理每个年份目录
         for y in yearlist:
             os.chdir(f'./{y}')
-            yearf = open(f'./{y}.md','a',encoding='utf-8')
+            yearf = open(f'./{y}.md','w',encoding='utf-8')
+            # 加入年份标题
+            yearf.write(f'# {self.year}\n')
             
             # 遍历年份目录下的所有月份目录
             for j in os.listdir():
@@ -98,7 +105,9 @@ class Diary:
             # 处理每个月份目录
             for m in monthlist:
                 os.chdir(f'./{m}')
-                monthf = open(f'./{y}-{m}.md','a',encoding='utf-8')
+                monthf = open(f'./{y}-{m}.md','w',encoding='utf-8')
+                # 加入月份标题
+                monthf.write(f'## {self.year}-{self.month}\n')
                 
                 # 遍历月份目录下的所有日期文件
                 for k in os.listdir():
