@@ -33,8 +33,11 @@ class Diary:
             os.chdir(f'./{self.year}')
             os.mkdir(f'{self.month}')
         except FileExistsError:
-            # 目录已存在时忽略错误，继续执行
-            pass
+            try:
+                os.chdir(f'./{self.year}')
+                os.makedirs(f'{self.month}')
+            except FileExistsError:
+                pass
 
     def template(self,path = f'./{year}/{month}/{day}.md'):
         """
