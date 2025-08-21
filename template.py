@@ -86,7 +86,6 @@ class Diary:
         """
         yearlist = []
         monthlist = []
-        daylist = []
         
         # 遍历当前目录，找出所有符合年份命名规则的目录
         for i in os.listdir():
@@ -98,7 +97,7 @@ class Diary:
             os.chdir(f'./{y}')
             yearf = open(f'./{y}.md','w',encoding='utf-8')
             # 加入年份标题
-            yearf.write(f'# {self.year}\n')
+            yearf.write(f'# {y}\n')
             
             # 遍历年份目录下的所有月份目录
             for j in os.listdir():
@@ -107,10 +106,11 @@ class Diary:
             
             # 处理每个月份目录
             for m in monthlist:
+                daylist = []
                 os.chdir(f'./{m}')
                 monthf = open(f'./{y}-{m}.md','w',encoding='utf-8')
                 # 加入月份标题
-                monthf.write(f'## {self.year}-{self.month}\n')
+                monthf.write(f'\n## {y}-{m}\n')
                 
                 # 遍历月份目录下的所有日期文件
                 for k in os.listdir():
@@ -120,7 +120,7 @@ class Diary:
                 # 将所有日期文件内容写入月份文件
                 for d in daylist:
                     dayf = open(d,'r',encoding='utf-8')
-                    monthf.write(dayf.read())
+                    monthf.write('\n' + dayf.read())
                     dayf.close()
                 
                 monthf.close()
