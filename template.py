@@ -85,8 +85,7 @@ class Diary:
             无返回值
         """
         yearlist = []
-        monthlist = []
-        
+      
         # 遍历当前目录，找出所有符合年份命名规则的目录
         for i in os.listdir():
             if re.match('^\d{1,4}$',i,0):
@@ -100,6 +99,7 @@ class Diary:
             yearf.write(f'# {y}\n')
             
             # 遍历年份目录下的所有月份目录
+            monthlist = []
             for j in os.listdir():
                 if re.match('^\d{1,4}$',j,0):
                     monthlist.append(j)
@@ -137,7 +137,5 @@ class Diary:
 if __name__ == '__main__':
     t = Diary()
     print('start')
-    t.mkfile()
-    t.template()
     t.readfile()
     print('end')
