@@ -83,7 +83,7 @@ class Diary:
             无返回值
         """
         yearlist = []
-
+      
         # 遍历当前目录，找出所有符合年份命名规则的目录
         for i in os.listdir():
             if re.match("^\d{1,4}$", i, 0):
@@ -135,6 +135,6 @@ class Diary:
 
 if __name__ == "__main__":
     t = Diary()
-    print("start")
+    print('start')
     t.readfile()
-    print("end")
+    print('end')
